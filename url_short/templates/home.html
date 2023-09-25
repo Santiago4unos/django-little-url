@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% block title %} Home Page {% endblock title %}
+{% block content %}
+<header>
+    <img src="https://i.ibb.co/1Mr2hnh/cowboy-possum.png" alt="Cowboy possum">
+</header>
+<h1>Acortador de enlaces</h1>
+<p>Bienvenido al acortador de enlaces, introduzca el enlace que quiere acortar</p>
+<form action="">
+    <label for="url">Url:</label>
+    <input name="url" id="url" type="text">
+    <label for="url_name">Nombre nuevo para el enlace:</label>
+    <input name="url_name" id="url_name" type="text">
+    <input type="submit">
+</form>
+{% endblock content %}

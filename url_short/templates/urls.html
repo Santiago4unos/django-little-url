@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <ul>
+    {% for url in urls %}
+            <li>{{ url }}</li>
+            {% endfor %}
+    {% for url in urls_with_id %}
+            <li>
+                <li>{{ url }}</li>
+            </li>
+    {% endfor %}
+    {% for url_id in ids %}
+            <li>{{ url_id }}</li>
+            {% endfor %}
+    </ul>
+{% endblock content %}
