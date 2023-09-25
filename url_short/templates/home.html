@@ -5,11 +5,12 @@
 </header>
 <h1>Acortador de enlaces</h1>
 <p>Bienvenido al acortador de enlaces, introduzca el enlace que quiere acortar</p>
-<form action="">
+<form method="post">
+    {% csrf_token %}
     <label for="url">Url:</label>
-    <input name="url" id="url" type="text">
+    <input name="url" id="url" value="url" type="text">
     <label for="url_name">Nombre nuevo para el enlace:</label>
-    <input name="url_name" id="url_name" type="text">
+    <input name="url_name" id="url_name" value="url_name" type="text">
     <input type="submit">
 </form>
 {% endblock content %}

@@ -21,6 +21,7 @@ from url_short import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home , name="home"),
-    path("urls/", views.url_redirect),
-    path("", include("url_short.urls"))
+    path("", views.url_redirect),
+    path("", include("url_short.views")),
+    path("", include("url_short.urls")),
 ]
