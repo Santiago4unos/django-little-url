@@ -7,10 +7,16 @@
 <p>Bienvenido al acortador de enlaces, introduzca el enlace que quiere acortar</p>
 <form method="post">
     {% csrf_token %}
-    <label for="url">Url:</label>
-    <input name="url" id="url" value="url" type="text">
-    <label for="url_name">Nombre nuevo para el enlace:</label>
-    <input name="url_name" id="url_name" value="url_name" type="text">
+    <label for="og_url">Url:</label>
+    <input name="og_url" id="og_url" type="text" required>
+    <label for="url">Nombre nuevo para el enlace:</label>
+    <input name="url" id="url" type="text" required>
     <input type="submit">
 </form>
+
+{% if request_headers %}
+    {% for header in request_headers %}
+    <p>{{ header }}</p>
+    {% endfor %}
+{% endif %}
 {% endblock content %}
