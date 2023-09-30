@@ -1,22 +1,28 @@
-{% extends "base.html" %} {% block title %} Home Page {% endblock title %}
-{% block content %}
-<header>
-    <img src="https://i.ibb.co/1Mr2hnh/cowboy-possum.png" alt="Cowboy possum">
-</header>
-<h1>Acortador de enlaces</h1>
-<p>Bienvenido al acortador de enlaces, introduzca el enlace que quiere acortar</p>
-<form method="post">
-    {% csrf_token %}
-    <label for="og_url">Url:</label>
-    <input name="og_url" id="og_url" type="text" required>
-    <label for="url">Nombre nuevo para el enlace:</label>
-    <input name="url" id="url" type="text" required>
-    <input type="submit">
-</form>
+{% extends "base.html" %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static "url_short/style.css" %}">
+{% endblock link %}
+{% block title %} Home Page {% endblock title %}
 
-{% if request_headers %}
-    {% for header in request_headers %}
-    <p>{{ header }}</p>
-    {% endfor %}
-{% endif %}
+{% block content %}
+    <header>
+        <img src="https://i.ibb.co/1Mr2hnh/cowboy-possum.png" alt="Cowboy possum">
+    </header>
+    <h1>Acortador de enlaces</h1>
+    <p>Bienvenido al acortador de enlaces, introduzca el enlace que quiere acortar</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="og_url">Url:</label>
+        <input name="og_url" id="og_url" type="text" required>
+        <label for="url">Nombre nuevo para el enlace:</label>
+        <input name="url" id="url" type="text" required>
+        <input type="submit">
+    </form>
+
+    {% if request_headers %}
+        {% for header in request_headers %}
+        <p>{{ header }}</p>
+        {% endfor %}
+    {% endif %}
 {% endblock content %}

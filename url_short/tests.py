@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
-from django.shortcuts import get_object_or_404, get_list_or_404
-from django.http import Http404
+from django.shortcuts import get_object_or_404
+from django.http.response import Http404
 from .models import URL
 
 class URLTestCase(TestCase):
@@ -25,6 +25,13 @@ class URLTestCase(TestCase):
 
     def test_add_url_name_that_already_exists(self):
         client = Client()
-        client.post("/", {"url": "Better-call-him", "url_name": "https://youtu.be/yBm4K00SMEk"})
+        client.post("/", {"url": "Better-call-him", "og_url": "https://youtu.be/yBm4K00SMEk"})
 
         self.assertEqual(len(URL.objects.filter(url="Better-call-him")), 1)
+
+    def test_add_invalid_url(self):
+        client = Client()
+        client.post("/", {"url": "agagagdsag", "og_url": "Whatthehell"})
+
+        with self.assertRaises(Http404):
+            get_object_or_404(URL, og_url="Whatthehell")
