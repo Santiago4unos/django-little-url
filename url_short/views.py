@@ -6,12 +6,17 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import URL
 from .queries import allowed_urls
 from django.contrib.auth.models import User
+from django.contrib.auth import logout, login, authenticate
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     if request.method == "POST":
         og_url = request.POST["og_url"]
         url = request.POST["url"]
         url = url.replace(" ", "-")
+        # user = authenticate(request, username=username, email=email, password=password)
+        user_is_logged_in = request.user.is_authenticated
+        user = request.user
         val = URLValidator()
         try:
             get_object_or_404(URL, url=url)
@@ -24,6 +29,11 @@ def home(request):
             except ValidationError:
                 error = "La URL no es válida"
                 return render(request, "home_error.html", {"error": error})
+        return render(request, "home.html", {"user_is_logged_in": user_is_logged_in, "user": user})
+    elif request.user.is_authenticated:
+        user = request.user
+        user_is_logged_in = True
+        return render(request, "home.html", {"user_is_logged_in": user_is_logged_in, "user": user})
     return render(request, "home.html")
 
 def url_redirect(request):
@@ -55,8 +65,19 @@ def register(request):
     return render(request, "register.html")
 
 
-def login(request):
+def login_page(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect(reverse("home"))
     return render(request, "login.html")
+
+def logout_page(request):
+    logout(request)
+    return render(request, "home.html")
     
-
-
+def user_urls(request):
+    return render(request, "user_urls.html")
