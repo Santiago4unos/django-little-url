@@ -9,7 +9,9 @@
             <a href="./register">Registrarse</a>
             <a href="./logout">Cerrar sesión</a>
         </nav>
-        <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+        <div class="image-container">
+            <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+        </div>
 </header>
     <h1>LittleURL</h1>
     {% if user_is_logged_in %}
@@ -23,7 +25,7 @@
             <input type="submit">
         </form>
     {% else %}
-        <h3>Bienvenido a </h3>
+        <h3>Bienvenido a LittleURL, inicie sesión para empezar a acortar enlaces</h3>
     {% endif %}
 
     {% if request_headers %}

@@ -4,7 +4,6 @@ from django.core.exceptions import ValidationError
 from django.urls import path, reverse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import URL
-from .queries import allowed_urls
 from django.contrib.auth.models import User
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -14,6 +13,7 @@ def home(request):
         og_url = request.POST["og_url"]
         url = request.POST["url"]
         url = url.replace(" ", "-")
+        user_id = request.user
         # user = authenticate(request, username=username, email=email, password=password)
         user_is_logged_in = request.user.is_authenticated
         user = request.user
@@ -25,7 +25,7 @@ def home(request):
         except Http404:
             try:
                 val(og_url)
-                URL.objects.create(og_url=og_url, url=url)
+                URL.objects.create(og_url=og_url, url=url, user=user)
             except ValidationError:
                 error = "La URL no es válida"
                 return render(request, "home_error.html", {"error": error})
@@ -79,5 +79,12 @@ def logout_page(request):
     logout(request)
     return render(request, "home.html")
     
+@login_required
 def user_urls(request):
-    return render(request, "user_urls.html")
+    user_id = request.user.id
+    owned_urls = URL.objects.filter(user_id=user_id)
+
+    url_list = [url.url for url in owned_urls]
+    og_url_list = [url.og_url for url in owned_urls]
+
+    return render(request, "user_urls.html", {"url_list": url_list, "og_url_list": og_url_list})    

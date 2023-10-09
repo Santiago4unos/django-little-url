@@ -1,2 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
+
+{% block content %}
+<header>
+    <nav>
+        <a href="./">Inicio</a>
+        <a href="./login">Iniciar sesión</a>
+        <a href="./register">Registrarse</a>
+        <a href="./logout">Cerrar sesión</a>
+    </nav>
+    <div class="image-container">
+        <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+    </div>
+</header>
+
+{% for url in url_list %}
+    <p>{{ url }}</p>
+{% endfor %}
+
+{% for og_url in og_url_list %}
+    <p>{{ og_url }}</p>
+{% endfor %}
+
+{% endblock content %}

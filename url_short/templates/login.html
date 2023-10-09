@@ -4,19 +4,20 @@
 {% block content %}
 <header>
         <nav>
+            {% if user_is_logged_in %}<a href="./user_urls">Mis urls</a>{% endif %}
             <a href="./">Inicio</a>
-            <a href="./login">Iniciar sesión</a>
+            <a href="./register">Registrarse</a>
             <a href="./logout">Cerrar sesión</a>
         </nav>
-        <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+        <div class="image-container">
+            <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+        </div>
 </header>
-    <h1>Register</h1>
+    <h1>Iniciar Sesión</h1>
     <form method="post">
         {% csrf_token %}
         <label for="username">Username:</label>
         <input name="username" id="username" type="text" required>
-        <label for="email">Email:</label>
-        <input name="email" id="email" type="text" required>
         <label for="password">Password:</label>
         <input name="password" id="password" type="password" required>
         <input type="submit">
