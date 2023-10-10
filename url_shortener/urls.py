@@ -25,5 +25,6 @@ urlpatterns = [
     path('login', views.login_page, name='login'),
     path('logout', views.logout_page, name='logout'),
     path('user_urls', views.user_urls, name='user_urls'),
+    path('delete', views.delete_page , name='delete'),
     re_path('', views.url_redirect, name='url_redirect'),
 ]

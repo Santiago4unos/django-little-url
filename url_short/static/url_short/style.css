@@ -44,9 +44,41 @@ nav a {
 form {
     display: flex;
     flex-direction: column;
-    padding: 2% 25%;
 }
 
 input[type=submit] {
     background-color: #fbfbf0;
+    margin-top: 2%;
+}
+
+button {
+    background-color: rgb(218, 19, 19);
+    margin-top: 5%;
+}
+
+
+form label {
+    padding: 1% 0px;
+    font-size: x-large;
+}
+
+.change-url-form label {
+    font-size: medium;
+}
+
+.my-urls img {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    align-self: flex-start;
+}
+
+.my-urls {
+    display: flex;
+    justify-content: center;
+    padding-top: 2%;
+}
+
+span {
+    align-self: center;
 }

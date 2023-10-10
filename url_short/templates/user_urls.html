@@ -1,25 +1,37 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block title %} LittleURL - MyUrls {% endblock title %}
 {% block content %}
-<header>
-    <nav>
-        <a href="./">Inicio</a>
-        <a href="./login">Iniciar sesión</a>
-        <a href="./register">Registrarse</a>
-        <a href="./logout">Cerrar sesión</a>
-    </nav>
-    <div class="image-container">
-        <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+    <header>
+        <nav>
+            <a href="./">Inicio</a>
+            <a href="./login">Iniciar sesión</a>
+            <a href="./register">Registrarse</a>
+            <a href="./logout">Cerrar sesión</a>
+        </nav>
+        <div class="image-container">
+            <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+        </div>
+    </header>
+
+    <div>
+        {% for url, og_url in owned_urls%}
+            <div class="my-urls">
+                <img src="{{ url.1 }}" alt="Website's favicon">
+                <form action="post" class="change-url-form">
+                    <span>Nombre de la url: <b>{{ url.0 }}</b></span>
+                    <span>Url original: {{ og_url }}</span>
+                    <label for="new-name">Nuevo nombre para la url: </b></label>
+                    <input name="new-name" type="text">
+                    <span>O</span>
+                    <label for="new-url">Nueva url: </b></label>
+                    <input name="new-url" type="text">
+                    <input name="old_name" value="{{ url.0 }}" type="hidden">
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+            {% endfor %}
     </div>
-</header>
 
-{% for url in url_list %}
-    <p>{{ url }}</p>
-{% endfor %}
-
-{% for og_url in og_url_list %}
-    <p>{{ og_url }}</p>
-{% endfor %}
 
 {% endblock content %}

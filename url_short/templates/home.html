@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %} LittleURL {% endblock title %}
+{% block title %} LittleURL - Home {% endblock title %}
 {% block content %}
 <header>
         <nav>
@@ -16,12 +16,16 @@
     <h1>LittleURL</h1>
     {% if user_is_logged_in %}
         <h3>Bienvenido {{ user }} a LittleURL, introduzca el enlace que quiere acortar</h3>
-        <form method="post">
+        <form method="post" id="create-url-form">
             {% csrf_token %}
-            <label for="og_url">Url:</label>
-            <input name="og_url" id="og_url" type="text" required>
-            <label for="url">Nombre nuevo para el enlace:</label>
-            <input name="url" id="url" type="text" required>
+            <div class="form-row">    
+                <label for="og_url">Url:</label>
+                <input name="og_url" id="og_url" type="text" required>
+            </div>
+            <div class="form-row">
+                <label for="url">Nombre nuevo para el enlace:</label>
+                <input name="url" id="url" type="text" required>
+            </div>
             <input type="submit">
         </form>
     {% else %}
