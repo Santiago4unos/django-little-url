@@ -23,8 +23,9 @@ urlpatterns = [
     path('', views.home , name="home"),
     path('register', views.register, name='register'),
     path('login', views.login_page, name='login'),
+    path('accounts/', include('allauth.urls')),
     path('logout', views.logout_page, name='logout'),
-    path('user_urls', views.user_urls, name='user_urls'),
-    path('delete', views.delete_page , name='delete'),
+    path('user-urls', views.user_urls, name='user_urls'),
+    path('my-url/<int:pk>', views.my_url, name='my_url'),
     re_path('', views.url_redirect, name='url_redirect'),
 ]

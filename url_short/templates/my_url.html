@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} LittleURL - MyUrl {% endblock title %}
+{% block content %}
+    <header>
+        <nav>
+            <a href="./">Inicio</a>
+            <a href="./user-urls">Mis urls</a>
+            <a href="./login">Iniciar sesión</a>
+            <a href="./register">Registrarse</a>
+            <a href="./logout">Cerrar sesión</a>
+        </nav>
+        <div class="image-container">
+            <a href="./"><img src="{% static "url_short/cowboy_possum.png" %}" alt="Cowboy possum"></a>
+        </div>
+    </header>
+
+    <main>
+        <div id="clicks">
+            <p>Clicks: {{ clicks }}</p>
+        </div>
+        <ul>
+            {% for key, value in referrer_dict %}
+                <li>{{ key }}: {{ value }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+
+
+
+{% endblock content %}

@@ -35,3 +35,9 @@ class URLTestCase(TestCase):
 
         with self.assertRaises(Http404):
             get_object_or_404(URL, og_url="Whatthehell")
+
+class RefferersTestCase(TestCase):
+    def using_youtube_as_a_referrer(self):
+        client = Client(headers={"referer": "https://youtube.com/"})
+        client.get("")
+        self.assertEqual()

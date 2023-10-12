@@ -14,24 +14,30 @@
         </div>
     </header>
 
-    <div>
+    <main>
         {% for url, og_url in owned_urls%}
             <div class="my-urls">
                 <img src="{{ url.1 }}" alt="Website's favicon">
-                <form action="post" class="change-url-form">
+                <form method="post" class="change-url-form">
+                    {% csrf_token %}
                     <span>Nombre de la url: <b>{{ url.0 }}</b></span>
-                    <span>Url original: {{ og_url }}</span>
-                    <label for="new-name">Nuevo nombre para la url: </b></label>
+                    <span>Url original: {{ og_url.0 }}</span>
+                    <a href="./my-url/{{ og_url.1 }}"><span>Ver las estadísticas</span></a>
+                    <label for="new-name">Nuevo nombre para la url: </label>
                     <input name="new-name" type="text">
                     <span>O</span>
-                    <label for="new-url">Nueva url: </b></label>
+                    <label for="new-url">Nueva url: </label>
                     <input name="new-url" type="text">
-                    <input name="old_name" value="{{ url.0 }}" type="hidden">
+                    <span>O</span>
+                    <label for="delete">Borrar la URL: </b></label>
+                    <input type="checkbox" name="delete" value="delete">
+                    <input type="hidden" id="url_id" value="{{ og_url.1 }}" name="url_id">
+                    <input name="old_name" id="old_name" value="{{ url.0 }}" type="hidden">
                     <input type="submit" value="Enviar">
                 </form>
             </div>
-            {% endfor %}
-    </div>
+        {% endfor %}
+        </main>
 
 
 {% endblock content %}

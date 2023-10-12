@@ -15,6 +15,10 @@ header {
     flex-direction: column;
 }
 
+a {
+    text-decoration: none;
+}
+
 h1, h3 {
     text-align: center;
 }
@@ -27,6 +31,23 @@ header img {
     max-width: 100%;
     width: 100px;
 }
+div#google-login {
+    display: flex;
+}
+
+#google-login-btn {
+    display: flex;
+    background-color:#fbfbf0;
+}
+
+#google-login-btn img {
+    height: 30px;
+}
+
+#google-login-btn span {
+    font-size: larger;
+    color: #323232;
+}
 
 nav {
     display: flex;
@@ -35,7 +56,6 @@ nav {
 }
 
 nav a {
-    text-decoration: none;
     color: #323232;
     padding: 0px 10px;
     font-size: larger;
@@ -49,11 +69,6 @@ form {
 input[type=submit] {
     background-color: #fbfbf0;
     margin-top: 2%;
-}
-
-button {
-    background-color: rgb(218, 19, 19);
-    margin-top: 5%;
 }
 
 
