@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} LittleURL - Log In {% endblock title %}
 {% block content %}
+{% load socialaccount %}
 <header>
         <nav>
             {% if user_is_logged_in %}<a href="./user-urls">Mis urls</a>{% endif %}
@@ -20,10 +21,10 @@
         <input name="username" id="username" type="text" required>
         <label for="password">Password:</label>
         <input name="password" id="password" type="password" required>
+        <div id="google-login">
+            <a id="google-login-btn" href="{% provider_login_url 'google' %}?next=/&prompt=none" alt="Google logo"><img src="https://d1ayxb9ooonjts.cloudfront.net/bitly2/7D3D4B49B3CB108E9DD416FA967849FBABBC49CF.svg" alt="Google logo"><span>Google</span></a>
+        </div>
         <input type="submit">
     </form>
-    <div id="google-login">
-        <a id="google-login-btn" href="http://127.0.0.1:8000/accounts/google/login/?process=login"><img src="https://d1ayxb9ooonjts.cloudfront.net/bitly2/DC9369588A3C994587104B35CF7B153A50E6B1FF.svg" alt="Google logo"><span>Google</span></a>
-    </div>
     </div>
 {% endblock content %}

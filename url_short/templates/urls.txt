@@ -1,0 +1,8 @@
+&scope=openid%20profile%20email&state=ed839d64-4281-a166-3cb5-defa539a3c73&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow
+
+
+&scope=profile&state=XUAawlInLj6uEWgX&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow
+
+
+https://accounts.google.com/o/oauth2/v2/auth/oauthchooseaccount?client_id=12359775538-65106teu1v2otab5d4a9o32pb23hvm8t.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Faccounts%2Fgoogle%2Flogin%2Fcallback%2F&response_type=code&response_type=code&scope=profile&state=XUAawlInLj6uEWgX&service=lso&o2v=2&theme=glif&flowName=GeneralOAuthFlow
+

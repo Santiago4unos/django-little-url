@@ -1,5 +1,8 @@
-{% extends "home.html" %}
+{% extends "base.html" %}
+{% load static %}
+{% block title %} LittleURL - Error {% endblock title %}
 {% block content %}
     <h3>Hubo un error procesando tus respuestas</h3>
     <p>{{ error }}</p>
+    <img src="{% static "url_short/url.png" %}" alt="Url_logo"> {% comment %} This is a placeholder before I add an appropiate image {% endcomment %}
 {% endblock content %}

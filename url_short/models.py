@@ -17,4 +17,3 @@ class KeyVal(models.Model):
     container = models.ForeignKey(Referrers, db_index=True, on_delete=models.CASCADE)
     key = models.CharField(max_length=240, db_index=True)
     value = models.IntegerField(db_index=True)
-
