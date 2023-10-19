@@ -5,10 +5,8 @@
 <script>
     function copy_url() {
         var copyText = document.getElementById("url_to_copy");
-      
-        console.log(copyText)
 
-        navigator.clipboard.writeText(copyText.getAttribute("href"));
+        navigator.clipboard.writeText(copyText.innerHTML);
       }
 </script>
 {% endblock scripts %}
@@ -26,7 +24,7 @@
 </header>
     <h1>LittleURL</h1>
     {% if user_is_logged_in %}
-        <h3>Bienvenido {{ user| title }} a LittleURL, introduzca el enlace que quiere acortar</h3>
+        <h3>Bienvenido {{ user | title }} a LittleURL, introduzca el enlace que quiere acortar</h3>
         <form method="post" id="create-url-form">
             {% csrf_token %}
             <div class="form-row">    
