@@ -37,7 +37,8 @@ def home(request):
             except ValidationError:
                 error = "La URL no es válida"
                 return render(request, "home_error.html", {"error": error})
-        return render(request, "home.html", {"user_is_logged_in": user_is_logged_in, "user": user})
+        url_link = f"http://3.130.154.230:8000/{url}"
+        return render(request, "home.html", {"user_is_logged_in": user_is_logged_in, "user": user, "POST": request.method, "url_link": url_link})
     elif request.user.is_authenticated:
         user = request.user
         user_is_logged_in = True
@@ -94,7 +95,9 @@ def register(request):
         password = request.POST["password"]
         user = User.objects.create_user(username, email, password)
         user.save()
-        return redirect(reverse("login"))
+        user = authenticate(request, username=username, password=password)
+        login(request, user)
+        return redirect(reverse("home"))
     return render(request, "register.html", {"user_is_logged_in": user_is_logged_in})
 
 

@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %} LittleURL - MyUrls {% endblock title %}
+{% block scripts %}
+<script>
+    function copy_url(button) {
+        var span = button.previousSibling;
+
+        var copyText = span.querySelector("url_to_copy")
+      
+        var urlToCopy = copyText.getAttribute("href");
+      
+        navigator.clipboard.writeText(urlToCopy).then(function() {
+          alert("URL copied to clipboard: " + copyText);
+        }).catch(function(err) {
+          console.error("Copy failed: " + err);
+        });
+        return false;
+      }
+      
+</script>
+{% endblock scripts %}
 {% block content %}
     <header>
         <nav>
@@ -21,6 +40,8 @@
                 <form method="post" class="change-url-form">
                     {% csrf_token %}
                     <span>Nombre de la url: <b>{{ url.0 }}</b></span>
+                    <span>Nueva url: <a id="url_to_copy" href="http://3.130.154.230:8000/{{ url.0 }}">http://3.130.154.230:8000/{{ url.0 }}</a></span>
+                    {% comment %} <button id="special_btn" onclick="copy_url(this)"><img src="{% static 'url_short/Copy_img.png' %}" alt="copy" id="copy_img{{ forloop.counter }}"></button> {% endcomment %}
                     <span>Url original: {{ og_url.0 }}</span>
                     <a href="./my-url/{{ og_url.1 }}"><span>Ver las estadísticas</span></a>
                     <label for="new-name">Nuevo nombre para la url: </label>

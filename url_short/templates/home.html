@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %} LittleURL - Home {% endblock title %}
+{% block scripts %}
+<script>
+    function copy_url() {
+        var copyText = document.getElementById("url_to_copy");
+      
+        console.log(copyText)
+
+        navigator.clipboard.writeText(copyText.getAttribute("href"));
+      }
+</script>
+{% endblock scripts %}
 {% block content %}
 <header>
         <nav>
@@ -32,9 +43,10 @@
         <h3>Bienvenido a LittleURL, inicie sesión para empezar a acortar enlaces</h3>
     {% endif %}
 
-    {% if request_headers %}
-        {% for header in request_headers %}
-        <p>{{ header }}</p>
-        {% endfor %}
+    {% if POST == "POST" %}
+        <div id="url_created">
+            <p>Creaste exitosamente tu url, el link de tu url es <a id="url_to_copy" href="{{ url_link }}">{{ url_link }}</a> <button id="special_btn" onclick="copy_url()"><img src="{% static 'url_short/Copy_img.png' %}" alt="copy" id="copy_img"></button></p>
+            <p>Puedes saber más información acerca de tu url en <a href="./user-urls">user urls</a></p>
+        </div>
     {% endif %}
 {% endblock content %}

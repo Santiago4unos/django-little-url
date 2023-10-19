@@ -1,6 +1,5 @@
 /venv
 */__pycache__
 /url_short/migrations
-/static
 *.pem
 *Identifier
